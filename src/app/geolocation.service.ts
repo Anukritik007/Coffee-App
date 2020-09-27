@@ -11,7 +11,7 @@ export class GeolocationService {
     //W3 geolocation API
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        callback(position.coords);
+        callback(position.coords);  //returns latitude & longitude
       },
       (error) => {
         callback(null);

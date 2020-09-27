@@ -11,6 +11,14 @@ export class DataService {
 
   constructor(private _http: HttpClient) { }
 
+  public get(id:string,callback) {
+
+    this._http.get(`${this.endpoint}/coffees/${id}`).subscribe((response) => {
+      console.log('DataService: get',response);
+      callback(response);
+    });
+  }
+
   public getList(callback) {
     // const list =[
     //   new Coffee("Double Espresso", "Sunny cafe", new PlaceLocation('123 Market cirty','San francisco')),

@@ -13,17 +13,23 @@ export class CoffeeComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _geoLocation: GeolocationService,
-    private _router : Router,
-    private _dataService : DataService
+    private _router: Router,
+    private _dataService: DataService
   ) {}
 
   public coffee: Coffee;
   public types: string[] = ['Cappucino', 'Espresso'];
   private _routeSubscription: any;
 
-  public ngOnInit(){
+  public ngOnInit() {
     this.coffee = new Coffee();
-    this._routeSubscription = this._route.params.subscribe((params) => {});
+    this._routeSubscription = this._route.params.subscribe((params) => {
+      if (params['id']) {
+        this._dataService.get(params['id'], (response) => {
+          this.coffee = response;
+        });
+      }
+    });
 
     this._geoLocation.requestLocation((location_) => {
       if (location_) {
@@ -33,15 +39,15 @@ export class CoffeeComponent implements OnInit {
     });
   }
 
-  public onSave(){
-    this._dataService.save(this.coffee, result=>{
-      if(result){
+  public onSave() {
+    this._dataService.save(this.coffee, (result) => {
+      if (result) {
         this._router.navigate(['/']);
       }
-    })
+    });
   }
 
-  public onCancel(){
+  public onCancel() {
     this._router.navigate(['/']);
   }
 

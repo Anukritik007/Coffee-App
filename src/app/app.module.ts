@@ -14,10 +14,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListComponent } from './list/list.component';
 import { CoffeeComponent } from './coffee/coffee.component';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, ListComponent, CoffeeComponent],
@@ -33,7 +34,8 @@ import {FormsModule} from '@angular/forms';
     MatToolbarModule,
     MatCardModule,
     MatSlideToggleModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [GeolocationService, DataService],
   bootstrap: [AppComponent],

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Coffee } from '../model/coffee';
 import { GeolocationService } from '../geolocation.service';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-coffee',
@@ -11,7 +12,9 @@ import { GeolocationService } from '../geolocation.service';
 export class CoffeeComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
-    private _geoLocation: GeolocationService
+    private _geoLocation: GeolocationService,
+    private _router : Router,
+    private _dataService : DataService
   ) {}
 
   public coffee: Coffee;
@@ -31,11 +34,15 @@ export class CoffeeComponent implements OnInit {
   }
 
   public onSave(){
-
+    this._dataService.save(this.coffee, result=>{
+      if(result){
+        this._router.navigate(['/']);
+      }
+    })
   }
 
   public onCancel(){
-    
+    this._router.navigate(['/']);
   }
 
   public ngOnDestroy() {

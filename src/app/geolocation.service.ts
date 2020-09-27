@@ -31,6 +31,7 @@ export class GeolocationService {
       query = `${location.address},${location.city}`;
     }
 
+    //The navigator object contains information about the browser.
     if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
       return `https://maps.apple.com/?q=${query}`;
     } else {

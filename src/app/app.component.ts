@@ -21,10 +21,14 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit() {
+    //TODO :Check SW update status
+
+    //checking network status
     this.updateUIonNetworkStatus();
     window.addEventListener('online', this.updateUIonNetworkStatus);
     window.addEventListener('offline', this.updateUIonNetworkStatus);
 
+    //Checking installation status
     if ((navigator as any).standalone === false) {
       // This is an ios device , we are in browser
       this._snackbar.open('You can add this as PWA to homescreen', '', {

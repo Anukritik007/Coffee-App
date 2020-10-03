@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { PlaceLocation } from './model/placeLocation';
-import { Coffee } from './model/coffee';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -13,7 +11,7 @@ export class DataService {
 
   public get(id:string,callback) {
 
-    this._http.get(`${this.endpoint}/coffees/${id}`).subscribe((response) => {
+    this._http.get(`${this.endpoint}/art/${id}`).subscribe((response) => {
       console.log('DataService: get',response);
       callback(response);
     });
@@ -21,12 +19,12 @@ export class DataService {
 
   public getList(callback) {
     // const list =[
-    //   new Coffee("Double Espresso", "Sunny cafe", new PlaceLocation('123 Market cirty','San francisco')),
-    //   new Coffee("Caramel Espresso", "Cafe Caffeeno", new PlaceLocation('123 Market cirty','San francisco'))
+    //   new Coffee("Sunrise beach", new PlaceLocation('123 Market cirty','San francisco')),
+    //   new Coffee("Iceland", new PlaceLocation('123 Market cirty','San francisco'))
     // ];
     // callback(list);
 
-    this._http.get(`${this.endpoint}/coffees`).subscribe((response) => {
+    this._http.get(`${this.endpoint}/art`).subscribe((response) => {
       console.log('DataService: getList',response);
       callback(response);
     });
@@ -37,7 +35,7 @@ export class DataService {
     if (coffee._id) {
       //it is an update
       this._http
-        .put(`${this.endpoint}/coffees/${coffee._id}`, coffee)
+        .put(`${this.endpoint}/art/${coffee._id}`, coffee)
         .subscribe(
           response => {
             callback(true);
@@ -48,7 +46,7 @@ export class DataService {
         );
     } else {
       //it is an insert
-      this._http.post(`${this.endpoint}/coffees`, coffee).subscribe(
+      this._http.post(`${this.endpoint}/art`, coffee).subscribe(
         response => {
           callback(true);
         },

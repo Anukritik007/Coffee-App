@@ -1,0 +1,55 @@
+<form>
+    <mat-card>
+        <mat-card-title>Basic Details</mat-card-title>
+        <div class="col-md-4 col-sm-6">
+            <mat-form-field>
+                <input matInput placeholder="Art Name" name="name" [(ngModel)]="art.name">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <mat-form-field>
+                <input matInput placeholder="Description" name="desc" [(ngModel)]="art.description">
+            </mat-form-field>
+        </div>
+        <div class="col-md-4 col-sm-6">
+            <mat-form-field>
+                <input matInput placeholder="Creator's Name" name="creator" [(ngModel)]="art.creator">
+            </mat-form-field>
+        </div>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Media</mat-card-title>
+        <mat-form-field>
+            <input matInput placeholder="Add media url" name="media" [(ngModel)]="art.mediaUrl">
+        </mat-form-field>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Ratings</mat-card-title>
+        <mat-card-subtitle>Overall Rating</mat-card-subtitle>
+        <mat-slider max="10" thumbLabel name="rating" [(ngModel)]="art.rating" tickInterval='1'></mat-slider>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Location</mat-card-title>
+        <mat-form-field>
+            <input matInput placeholder="Address" name="address" [(ngModel)]="art.location.address">
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="City" name="city" [(ngModel)]="art.location.city">
+        </mat-form-field>
+    </mat-card>
+
+    <mat-card>
+        <mat-card-title>Comments</mat-card-title>
+        <mat-form-field>
+            <input matInput placeholder="Comments" name="comments" [(ngModel)]="art.comments">
+        </mat-form-field>
+    </mat-card>
+
+    <mat-card>
+        <button mat-raised-button (click)="onCancel()">Cancel</button>
+        <button mat-raised-button color="accent" (click)="onSave()">Save</button>
+    </mat-card>
+</form>

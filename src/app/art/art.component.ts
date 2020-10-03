@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Coffee } from '../model/coffee';
 import { GeolocationService } from '../geolocation.service';
 import { DataService } from '../data.service';
+import { ArtWork } from '../model/art-work';
 
 @Component({
-  selector: 'app-coffee',
-  templateUrl: './coffee.component.html',
-  styleUrls: ['./coffee.component.scss'],
+  selector: 'app-art',
+  templateUrl: './art.component.html',
+  styleUrls: ['./art.component.scss'],
 })
-export class CoffeeComponent implements OnInit {
+export class ArtComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _geoLocation: GeolocationService,
@@ -17,30 +17,30 @@ export class CoffeeComponent implements OnInit {
     private _dataService: DataService
   ) {}
 
-  public coffee: Coffee;
+  public art: ArtWork;
   public types: string[] = ['Cappucino', 'Espresso'];
   private _routeSubscription: any;
 
   public ngOnInit() {
-    this.coffee = new Coffee();
+    this.art = new ArtWork();
     this._routeSubscription = this._route.params.subscribe((params) => {
       if (params['id']) {
         this._dataService.get(params['id'], (response) => {
-          this.coffee = response;
+          this.art = response;
         });
       }
     });
 
     this._geoLocation.requestLocation((location_) => {
       if (location_) {
-        this.coffee.location.latitude = location_.latitude;
-        this.coffee.location.longitute = location_.longitude;
+        this.art.location.latitude = location_.latitude;
+        this.art.location.longitute = location_.longitude;
       }
     });
   }
 
   public onSave() {
-    this._dataService.save(this.coffee, (result) => {
+    this._dataService.save(this.art, (result) => {
       if (result) {
         this._router.navigate(['/']);
       }

@@ -17,14 +17,14 @@ import { MatCardModule } from '@angular/material/card';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ListComponent } from './list/list.component';
-import { CoffeeComponent } from './coffee/coffee.component';
+import { ArtComponent } from './art/art.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 @NgModule({
-  declarations: [AppComponent, ListComponent, CoffeeComponent],
+  declarations: [AppComponent, ListComponent, ArtComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

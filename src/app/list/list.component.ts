@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import { Coffee } from '../model/coffee';
 import { Router } from '@angular/router';
 import { GeolocationService } from '../geolocation.service';
+import { ArtWork } from '../model/art-work';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +10,7 @@ import { GeolocationService } from '../geolocation.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  public list: Coffee[];
+  public artList: ArtWork[];
 
   constructor(
     private _data: DataService,
@@ -20,27 +20,27 @@ export class ListComponent implements OnInit {
 
   public ngOnInit(): void {
     this._data.getList((list_) => {
-      this.list = list_;
+      this.artList = list_;
     });
   }
 
-  public goDetails(coffee: Coffee) {
-    this._router.navigate(['/coffee', coffee._id]);
+  public goDetails(art_: ArtWork) {
+    this._router.navigate(['/art', art_._id]);
   }
 
-  public goMap(coffee: Coffee) {
-    const mapURL = this._geoLocation.getMapLink(coffee.location);
+  public goMap(art_: ArtWork) {
+    const mapURL = this._geoLocation.getMapLink(art_.location);
     location.href = mapURL;
   }
 
-  public goShare(coffee: Coffee) {
-    const shareText_ = `I had this coffee at ${coffee.place} and for me it's a ${coffee.rating} star coffee`;
+  public goShare(art_: ArtWork) {
+    const shareText_ = `I saw this work, it's a ${art_.rating} star art`;
 
     if ('share' in navigator) {
       //The navigator.share() method of the Web Share API invokes the native sharing mechanism of the device.
       navigator
         .share({
-          title: coffee.name,
+          title: art_.name,
           text: shareText_,
           url: window.location.href, //The window.location.href property returns the URL of the current page.
         })
